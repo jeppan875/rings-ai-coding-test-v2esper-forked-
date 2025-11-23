@@ -31,11 +31,14 @@
  *
  */
 
+// Comments:
+// I implemented the solution without adding any library.
+// But I'm familiar with apollo client, and always use something like codegen to get the right types for each query
 import { AutoComplete } from "./components/AutoComplete/AutoComplete";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between px-2 pt-24">
       <AutoComplete />
     </main>
   );
