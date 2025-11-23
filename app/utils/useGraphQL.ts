@@ -13,10 +13,12 @@ export const useGraphQL = <TData, TVariables>({
   query,
   variables,
   useCache,
+  debounceMs,
 }: {
   query: string;
   variables: TVariables;
   useCache?: boolean;
+  debounceMs?: number;
 }) => {
   const [state, setState] = useState<FetchState<TData>>({
     status: "idle",
@@ -29,7 +31,7 @@ export const useGraphQL = <TData, TVariables>({
   useEffect(() => {
     let cancelled = false;
 
-    const run = async () => {
+    const handler = setTimeout(async () => {
       setState({ status: "loading", data: null, error: null });
 
       if (useCache && cache[stringVariables]) {
@@ -64,12 +66,11 @@ export const useGraphQL = <TData, TVariables>({
           setState({ status: "error", data: null, error: err });
         }
       }
-    };
-
-    run();
+    }, debounceMs);
 
     return () => {
       cancelled = true;
+      clearTimeout(handler);
     };
   }, [query, JSON.stringify(variables)]);
 

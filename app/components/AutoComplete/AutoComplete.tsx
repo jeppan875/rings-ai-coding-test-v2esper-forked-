@@ -17,7 +17,12 @@ export const AutoComplete = () => {
   const { status, data, error } = useGraphQL<
     GetCharactersResponse,
     GetCharactersVariables
-  >({ query: gqlQuery, variables: { name: query }, useCache: true });
+  >({
+    query: gqlQuery,
+    variables: { name: query },
+    useCache: true,
+    debounceMs: 200,
+  });
 
   const ref = useRef<HTMLDivElement>(null);
 
