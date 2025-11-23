@@ -57,7 +57,7 @@ export const AutoComplete = () => {
     data?.characters.results && data?.characters.results.length > 0 && open;
 
   return (
-    <div ref={ref} className="relative w-full flex">
+    <div ref={ref} className="relative w-full flex w-max-4xl max-w-xl">
       <Input
         tabIndex={0}
         onChange={onChange}
