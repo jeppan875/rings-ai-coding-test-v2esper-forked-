@@ -19,7 +19,7 @@ export const AutoComplete = () => {
     GetCharactersVariables
   >(gqlQuery, { name: query });
 
-  console.log('data', data);
+  console.log("data", data);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -52,7 +52,7 @@ export const AutoComplete = () => {
     [setQuery, setOpen]
   );
 
-  // We only show suggestion if we have some data to show
+  // We only show suggestion if we have some data to show.
   const showSuggestions =
     data?.characters.results && data?.characters.results.length > 0 && open;
 
