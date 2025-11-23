@@ -17,9 +17,7 @@ export const AutoComplete = () => {
   const { status, data, error } = useGraphQL<
     GetCharactersResponse,
     GetCharactersVariables
-  >(gqlQuery, { name: query });
-
-  console.log("data", data);
+  >({ query: gqlQuery, variables: { name: query }, useCache: true });
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -54,7 +52,10 @@ export const AutoComplete = () => {
 
   // We only show suggestion if we have some data to show.
   const showSuggestions =
-    data?.characters.results && data?.characters.results.length > 0 && open;
+    query.length > 0 &&
+    data?.characters.results &&
+    data?.characters.results.length > 0 &&
+    open;
 
   return (
     <div ref={ref} className="relative w-full flex w-max-4xl max-w-xl">
