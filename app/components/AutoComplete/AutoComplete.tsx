@@ -70,7 +70,7 @@ export const AutoComplete = () => {
       {showSuggestions && (
         <Suggestions
           handleBlur={handleBlur}
-          suggestions={data.characters.results}
+          suggestions={data.characters.results.slice(0, 10)}
           onItemClick={onItemClick}
         />
       )}
